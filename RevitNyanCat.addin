@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Revit Nyan Cat</Name>
+    <Assembly>RevitNyanCat.dll</Assembly>
+    <AddInId>BEBAEE70-6DC4-470A-9ED1-2FBBC3D2915D</AddInId>
+    <FullClassName>RevitNyanCat.Program</FullClassName>
+    <VendorId>me.albisser</VendorId>
+    <VendorDescription>Adrian Albisser, https://github.com/albisserAdrian</VendorDescription>
+  </AddIn>
+</RevitAddIns>

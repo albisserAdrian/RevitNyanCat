@@ -2,8 +2,6 @@
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 
@@ -16,7 +14,6 @@ namespace RevitNyanCat
 {
     public class Program : IExternalApplication
     {
-
         private Stopwatch stopwatch;
         int modifier = 0;
 
@@ -27,14 +24,10 @@ namespace RevitNyanCat
                     "catgif.gif"),
                     UriKind.Relative));
 
-        
-
         public Result OnStartup(UIControlledApplication application)
         {
             try
             {
-                
-
                 stopwatch = new Stopwatch();
                 stopwatch.Start();
 
@@ -48,7 +41,6 @@ namespace RevitNyanCat
             return Result.Succeeded;
         }
 
-
         public Result OnShutdown(UIControlledApplication application)
         {
             // Unregister Events
@@ -58,7 +50,7 @@ namespace RevitNyanCat
 
         public void OnIdling(object sender, IdlingEventArgs e)
         {
-            int count1 = 0;
+            int count = 0;
 
             ImageBrush picBrush = new ImageBrush();
             picBrush.ImageSource = imgbg;
@@ -70,23 +62,22 @@ namespace RevitNyanCat
             adWin.RibbonControl ribbon = adWin.ComponentManager.Ribbon;
 
             if (stopwatch.ElapsedMilliseconds > 100)
-            {
+            {         
                 if (modifier == 7)
                 {
-                    count1 = 0;
+                    count = 0;
                 }
                 else
                 {
-                    count1 += modifier;
+                    count += modifier;
                 }
 
                 foreach (adWin.RibbonTab tab in ribbon.Tabs)
                 {
                     tab.Title = "Nyan Cat";
                     foreach (adWin.RibbonPanel panel in tab.Panels)
-                    {                   
-                        
-                        switch (count1)
+                    {   
+                        switch (count)
                         {
                             case 0:
                                 panel.CustomPanelBackground = new SolidColorBrush(Colors.Red);
@@ -116,21 +107,15 @@ namespace RevitNyanCat
                             case 6:
                                 panel.CustomPanelBackground = new SolidColorBrush(Colors.Violet);
                                 panel.CustomPanelTitleBarBackground = new SolidColorBrush(Colors.Violet);
-                                
                                 break;
+                        }
+                        count += 1;
 
-                        }
-                        count1 += 1;
-                        if (count1 > 6)
-                        {
-                            count1 = 0;
-                        }
-                        
-                    }
-                    
+                        if (count > 6) { count = 0; }                        
+                    }                    
                 }
 
-                if (modifier > 6)
+                if (modifier == 6)
                 {
                     modifier = 0;
                 }
@@ -140,7 +125,6 @@ namespace RevitNyanCat
                 }
                 
             }
-
             stopwatch.Reset();
             stopwatch.Start();
         }

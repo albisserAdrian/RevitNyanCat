@@ -7,8 +7,8 @@
     <ProjectGuid>{9BAC50DF-FFF8-4C28-AE33-4542FFD99368}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RevitRainbow</RootNamespace>
-    <AssemblyName>RevitRainbow</AssemblyName>
+    <RootNamespace>RevitNyanCat</RootNamespace>
+    <AssemblyName>RevitNyanCat</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -65,4 +65,8 @@
     <None Include="RevitNyanCat.addin" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(ProjectDir)RevitNyanCat.addin" "$(AppData)\Autodesk\REVIT\Addins\2018"
+copy "$(TargetPath)" "$(AppData)\Autodesk\REVIT\Addins\2018"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
